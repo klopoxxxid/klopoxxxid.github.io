@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Acumulación de Basura</title>
+    <style>
+        @font-face {
+            font-family: 'Gotham';
+            src: url('path_to_gotham_font.woff2') format('woff2');
+        }
+        :root {
+            --primary-color: #007644;
+            --secondary-color: #f5f5f5;
+            --highlight-color: #333;
+            --white-color: #ffffff;
+        }
+
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+            font-family: 'Gotham', Arial, sans-serif;
+        }
+        body {
+            color: var(--highlight-color);
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        nav a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .banner {
+            background-image: url('images/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 60px 40px;
+            color: var(--white-color);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+        }
+        .banner h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .banner p {
+            font-size: 20px;
+        }
+
+        .proyecto {
+            padding: 60px;
+            background-color: #007644;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .proyecto .texto {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .proyecto .texto h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .proyecto .texto p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .proyecto img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .principales-causas {
+            display: flex;
+            background-color: #f5f5f5;
+            padding: 60px;
+            color: #333;
+            align-items: flex-start;
+        }
+
+        .principales-causas h2 {
+            flex: 1;
+            font-size: 36px;
+            color: #007644;
+        }
+
+        .causas {
+            flex: 2;
+            margin-left: 40px;
+        }
+
+        .causa {
+            margin-bottom: 20px;
+        }
+
+        .causa h3 {
+            font-size: 24px;
+            color: #007644;
+            margin-bottom: 10px;
+        }
+
+        .causa p {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .nosotros {
+            padding: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .nosotros h2 {
+            color: #007644;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .equipo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .miembro {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+
+        .miembro img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .miembro h3 {
+            color: #007644;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .miembro p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .contacto {
+            padding: 40px;
+            background-image: url('images/fondo-contacto.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: left;
+        }
+
+        .contacto h2 {
+            color: white;
+        }
+
+        .contacto form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .contacto input, .contacto textarea, .contacto button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contacto input, .contacto textarea {
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        .contacto button {
+            background-color: white;
+            color: #007644;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .informacion {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 60px;
+            background-color: #007644;
+        }
+        
+        .apartado {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .apartado:last-child {
+            border-bottom: none;
+        }
+        
+        .apartado img {
+            border-radius: 10px;
+        }
+        
+        .contenido h3 {
+            font-size: 24px;
+            color: #f5f5f5;
+            margin-bottom: 10px;
+        }
+        
+        .contenido p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #f5f5f5;
+        }
+
+        .mision-vision {
+            background-color: #007644;
+            color: white;
+            padding: 60px;
+        }
+        
+        .mision-vision h2 {
+            text-align: center;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .contenedor-mision-vision {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .mision, .vision {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .mision img, .vision img {
+            width: 50%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .texto {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .texto h3 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .texto p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: white;
+        }
+            
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#proyecto">Proyecto</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section class="banner" id="inicio">
+        <img src="images/logo.png" alt="Logo" style="width: 300px; margin-bottom: 20px;">
+        <h1>Acumulación de basura</h1>
+        <p>Mantén limpia tu vía, para vivir con alegría.</p>
+    </section>
+
+    <section class="proyecto" id="proyecto">
+        <div class="texto">
+            <h2>Proyecto de Acumulación de Basura en el Perú</h2>
+            <p>La entrevista del proyecto de Laboratorio 2 abordó la acumulación de basura, sus causas, las políticas de manejo de residuos y sus efectos negativos en la salud y el entorno urbano.</p>
+            <p>Las entrevistas proporcionaron ideas para mejorar la gestión de residuos y aumentar la conciencia ambiental según las necesidades de los ciudadanos.</p>
+        </div>
+        <img src="images/imagen1.jpg" alt="Imagen del Proyecto">
+    </section>
+
+    <section class="principales-causas">
+        <h2>Principales Causas</h2>
+        <div class="causas">
+            <div class="causa">
+                <h3>Falta de infraestructura</h3>
+                <p>En zonas rurales y periféricas de Perú, la falta de infraestructura para recolección de residuos lleva a que los ciudadanos desechen basura en espacios públicos, generando acumulación descontrolada.</p>
+            </div>
+            <div class="causa">
+                <h3>Deficiencia en la educación</h3>
+                <p>En Perú, la falta de cultura de reciclaje y desconocimiento sobre el manejo adecuado de residuos lleva a la acumulación desordenada de desechos en espacios públicos.</p>
+            </div>
+            <div class="causa">
+                <h3>Crecimiento urbano</h3>
+                <p>El crecimiento urbano desorganizado y el aumento de residuos superan la capacidad de recolección, acumulándose basura en áreas públicas de ciudades como Lima.</p>
+            </div>
+        </div>
+    </section>
+
+<section class="informacion">
+    <div class="apartado">
+        <img src="images/imagen2.jpg" alt="Reciclaje de plástico" width="300px">
+        <div class="contenido">
+            <h3>Información</h3>
+            <h3>35 puntos críticos</h3>
+            <p>Con exceso de basura en los jirones Washin-gton, Quilca y Chota, 
+                así como las avenidas Garcilaso de la Vega, Enrique Meiggs, Morales 
+                Duárez, Grau, Nicolás Ayllón y 28 de Julio.</p>
+        </div>
+    </div>
+    <div class="apartado">
+        <img src="images/imagen3.jpg" alt="Reciclaje de plástico" width="300px">
+        <div class="contenido">
+            <h3>Aumento de un 4.8% anual</h3>
+            <p>En la generación de residuos durante los años 2013 a 2019.</p>
+        </div>
+    </div>
+    <div class="apartado">
+        <img src="images/imagen4.jpg" alt="Reciclaje de plástico" width="300px">
+        <div class="contenido">
+            <h3>Un mínimo de 1.9%</h3>
+            <p>Se recicla dentro de más de 1 millón de toneladas de plástico al año en el Perú.</p>
+        </div>
+    </div>
+    <div class="apartado">
+        <img src="images/imagen5.jpg" alt="Reciclaje de plástico" width="300px">
+        <div class="contenido">
+            <h3>30% de los residuos sólidos</h3>
+            <p>Termina en botaderos a cielo abierto, sin cumplir con estándares de seguridad.</p>
+        </div>
+    </div>
+</section>
+
+<section class="nosotros" id="nosotros">
+    <h2>NOSOTROS</h2>
+    <div class="equipo">
+        <div class="miembro">
+            <img src="images/alexandra.png" alt="Foto de Alexandra">
+            <h3>ALEXANDRA MUÑOZ</h3>
+            <p>Comunicadora - Tengo el cargo de comunicadora mi rol es transmitir información 
+                de manera clara y efectiva a través de diversos medios, adaptándome a diferentes 
+                audiencias.</p>
+        </div>
+        <div class="miembro">
+            <img src="images/sebastian.png" alt="Foto de Sebastian">
+            <h3>SEBASTIAN PIZO</h3>
+            <p>Ingeniero - Con el cargo de diseñar y desarrollar soluciones técnicas, trabajando 
+                en planificación y ejecución de la construcción y funcionalidad de los sistemas 
+                tecnológicos.</p>
+        </div>
+        <div class="miembro">
+            <img src="images/yadhira.png" alt="Foto de Yadhira">
+            <h3>YADHIRA COSME</h3>
+            <p>Coordinadora - Encargada de supervisar el desarrollo del proyecto, coordinando la 
+                implementación técnica a través de la programación y la organización de los equipos 
+                de trabajo.</p>
+        </div>
+        <div class="miembro">
+            <img src="images/mauricio.png" alt="Foto de Mauricio">
+            <h3>MAURICIO SÁNCHEZ</h3>
+            <p>Investigador - Investigador y encargado de recopilar datos por métodos cualitativos 
+                y cuantitativos para identificar posibilidades de mejora y oportunidades que nos sirvan 
+                para garantizar la efectividad.</p>
+        </div>
+        <div class="miembro">
+            <img src="images/gianella.png" alt="Foto de Gianella">
+            <h3>GIANELLA MESIAS</h3>
+            <p>Experiencia de Usuario - Especialista en UX, cargo de diseñar y optimizar las interfaces 
+                digitales de nuestra empresa, asegurando que cada interacción sea intuitiva, atractiva y 
+                centrada en nuestros usuarios.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mision-vision" id="mision-vision">
+    <h2>MISIÓN Y VISIÓN</h2>
+    <div class="contenedor-mision-vision">
+        <div class="mision">
+            <img src="images/mision.jpg" alt="Misión">
+            <div class="texto">
+                <h3>MISIÓN</h3>
+                <p>Concientizar a la población sobre la importancia de reducir, reciclar y reutilizar, con el fin de minimizar la acumulación de basura y proteger nuestro entorno.</p>
+            </div>
+        </div>
+        <div class="vision">
+            <img src="images/vision.jpg" alt="Visión">
+            <div class="texto">
+                <h3>VISIÓN</h3>
+                <p>Ser un referente en el cuidado y protección del medio ambiente, promoviendo prácticas de reciclaje y reducción de residuos para alcanzar un Perú más limpio y sostenible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contacto" id="contacto">
+    <h2>Contacto</h2>
+    <form>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+        
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+</body>
+</html>
